@@ -62,7 +62,12 @@ public class Grid implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if (i < 0 || i >= this.height()) {
+      throw new Exception("Row at index " + i + " is out of the valid range");
+    }
+    int rowElement = i % element.height();
+    String rowOutput = element.row(rowElement);
+    return rowOutput.repeat(this.hreps);
   } // row(int)
 
   /**
@@ -71,7 +76,7 @@ public class Grid implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.vreps * element.height();
   } // height()
 
   /**
@@ -80,7 +85,7 @@ public class Grid implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.hreps * element.width();
   } // width()
 
   /**
