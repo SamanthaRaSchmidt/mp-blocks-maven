@@ -33,6 +33,15 @@ public class HFlip implements AsciiBlock {
   // +---------+-----------------------------------------------------------
   // | Methods |
   // +---------+
+  /**
+   * Reverses a string.
+   *
+   * @param str string
+   * @return reversed String
+   */
+  public static String reverseString(String str) {
+    return new StringBuilder(str).reverse().toString();
+  }
 
   /**
    * Get one row from the block.
@@ -45,7 +54,16 @@ public class HFlip implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if (i < 0 || i >= block.height()) {
+      throw new Exception("Row at index " + i + " is out of the valid range");
+    }
+    int maxLength = this.width();
+    int wordLength = block.row(i).length();
+    if (maxLength > wordLength) {
+      return " ".repeat(maxLength - wordLength) + reverseString(block.row(i));
+    } else {
+      return reverseString(block.row(i));
+    } // end of if
   } // row(int)
 
   /**
@@ -54,7 +72,7 @@ public class HFlip implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.block.height();
   } // height()
 
   /**
@@ -63,19 +81,16 @@ public class HFlip implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.block.width();
   } // width()
 
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return false; // STUB
   } // eqv(AsciiBlock)
 } // class HFlip
