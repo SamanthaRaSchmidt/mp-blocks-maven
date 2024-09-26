@@ -11,9 +11,7 @@ public class HFlip implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /**
-   * The original block.
-   */
+  /** The original block. */
   AsciiBlock block;
 
   // +--------------+------------------------------------------------------
@@ -23,8 +21,7 @@ public class HFlip implements AsciiBlock {
   /**
    * Build a new block with the specified contents.
    *
-   * @param original
-   *   The original block.
+   * @param original The original block.
    */
   public HFlip(AsciiBlock original) {
     this.block = original;
@@ -47,11 +44,8 @@ public class HFlip implements AsciiBlock {
    * Get one row from the block.
    *
    * @param i the number of the row
-   *
    * @return row i.
-   *
-   * @exception Exception
-   *   If the row is invalid.
+   * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
     if (i < 0 || i >= block.height()) {
@@ -91,6 +85,16 @@ public class HFlip implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false; // STUB
+    return ((other instanceof HFlip) && (this.eqv((HFlip) other)));
   } // eqv(AsciiBlock)
+
+  /**
+   * Determine if another HFlip is structurally equivalent to this HFlip.
+   *
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
+   */
+  public boolean eqv(HFlip other) {
+    return this.block.eqv(other.block);
+  } // eqv(HFlip)
 } // class HFlip

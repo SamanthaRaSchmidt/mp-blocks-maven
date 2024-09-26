@@ -11,14 +11,10 @@ public class Surrounded implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /**
-   * The stuff in the box.
-   */
+  /** The stuff in the box. */
   AsciiBlock contents;
 
-  /**
-   * The character we put around the box.
-   */
+  /** The character we put around the box. */
   String surroundChar;
 
   // +--------------+------------------------------------------------------
@@ -28,11 +24,8 @@ public class Surrounded implements AsciiBlock {
   /**
    * Build a new block with the specified contents.
    *
-   * @param blockContents
-   *   The contents of the block.
-   *
-   * @param theChar
-   *   The character that we use to surround the block.
+   * @param blockContents The contents of the block.
+   * @param theChar The character that we use to surround the block.
    */
   public Surrounded(AsciiBlock blockContents, char theChar) {
     this.contents = blockContents;
@@ -47,14 +40,11 @@ public class Surrounded implements AsciiBlock {
    * Get one row from the block.
    *
    * @param i the number of the row
-   *
    * @return row i.
-   *
-   * @exception Exception
-   *   If the row is invalid.
+   * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
-    if(i < 0 || i >= this.height()){
+    if (i < 0 || i >= this.height()) {
       throw new Exception("Row at index " + i + " is out of the valid range");
     } // end of if
     if (i == 0 || i == this.height() - 1) {
@@ -85,13 +75,20 @@ public class Surrounded implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof Surrounded) && (this.eqv((Surrounded) other)));
   } // eqv(AsciiBlock)
+
+  /**
+   * Determine if other Surrounded block is structurally equivalent to this block.
+   *
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
+   */
+  public boolean eqv(Surrounded other) {
+    return (this.contents.eqv(other.contents) && this.surroundChar.equals(other.surroundChar));
+  } // eqv(Surrounded other)
 } // class Surrounded

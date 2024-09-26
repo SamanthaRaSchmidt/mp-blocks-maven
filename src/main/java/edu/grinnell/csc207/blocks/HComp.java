@@ -13,14 +13,10 @@ public class HComp implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /**
-   * The blocks.
-   */
+  /** The blocks. */
   AsciiBlock[] blocks;
 
-  /**
-   * How the blocks are aligned.
-   */
+  /** How the blocks are aligned. */
   VAlignment align;
 
   // +--------------+------------------------------------------------------
@@ -30,15 +26,11 @@ public class HComp implements AsciiBlock {
   /**
    * Build a horizontal composition of two blocks.
    *
-   * @param alignment
-   *   The way in which the blocks should be aligned.
-   * @param leftBlock
-   *   The block on the left.
-   * @param rightBlock
-   *   The block on the right.
+   * @param alignment The way in which the blocks should be aligned.
+   * @param leftBlock The block on the left.
+   * @param rightBlock The block on the right.
    */
-  public HComp(VAlignment alignment, AsciiBlock leftBlock,
-      AsciiBlock rightBlock) {
+  public HComp(VAlignment alignment, AsciiBlock leftBlock, AsciiBlock rightBlock) {
     this.align = alignment;
     this.blocks = new AsciiBlock[] {leftBlock, rightBlock};
   } // HComp(VAlignment, AsciiBlock, AsciiBlock)
@@ -46,10 +38,8 @@ public class HComp implements AsciiBlock {
   /**
    * Build a horizontal composition of multiple blocks.
    *
-   * @param alignment
-   *   The alignment of the blocks.
-   * @param blocksToCompose
-   *   The blocks we will be composing.
+   * @param alignment The alignment of the blocks.
+   * @param blocksToCompose The blocks we will be composing.
    */
   public HComp(VAlignment alignment, AsciiBlock[] blocksToCompose) {
     this.align = alignment;
@@ -64,42 +54,38 @@ public class HComp implements AsciiBlock {
    * Get one row from the block.
    *
    * @param i the number of the row
-   *
    * @return row i.
-   *
-   * @exception Exception
-   *   if i is outside the range of valid rows.
+   * @exception Exception if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
     int maxHeight = this.height();
-    if(i < 0 || i >= maxHeight){
+    if (i < 0 || i >= maxHeight) {
       throw new Exception("Row at index " + i + " is out of the valid range");
-    }
+    } // end of if
     StringBuilder output = new StringBuilder();
-
     for (AsciiBlock block : blocks) {
       int space = maxHeight - block.height();
       if (align == VAlignment.TOP) {
-        if (i > block.height()-1) {
+        if (i > block.height() - 1) {
           output.append(" ".repeat(block.width()));
         } else {
           output.append(block.row(i));
-        }
+        } // end of if
       } else if (align == VAlignment.BOTTOM) {
         if (i < space) {
           output.append(" ".repeat(block.width()));
         } else {
           output.append(block.row(i - space));
-        }
+        } // end of if
       } else {
         int offsett = space / 2;
         if (i < offsett || i >= block.height() + offsett) {
           output.append(" ".repeat(block.width()));
         } else {
           output.append(block.row(i - offsett));
-        }
-      }
-    }
+        } // end of if
+      } // end of if
+    } // end of loop
     return output.toString();
   } // row(int)
 
@@ -138,6 +124,23 @@ public class HComp implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false; // STUB
+    return ((other instanceof HComp) && (this.eqv((HComp) other))); // STUB
   } // eqv(AsciiBlock)
+
+  /**
+   * Determine if another Hcomp is structurally equivalent to this block.
+   *
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
+   */
+  public boolean eqv(HComp other) {
+    if (this.align.equals(other.align) && this.blocks.length == other.blocks.length) {
+      for (int i = 0; i < this.blocks.length; i++) {
+        if (!this.blocks[i].eqv(other.blocks[0])) {
+          return false;
+        } // end of if
+      } // end of loop
+    } // end of if
+    return true;
+  } // eqv(HComp other)
 } // class HComp
