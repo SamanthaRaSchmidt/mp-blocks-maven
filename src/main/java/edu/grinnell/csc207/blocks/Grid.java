@@ -43,9 +43,9 @@ public class Grid implements AsciiBlock {
    */
   public Grid(AsciiBlock gridElement, int horizRepetitions,
       int vertRepetitions) {
-    this.element = gridElement;
-    this.hreps = horizRepetitions;
-    this.vreps = vertRepetitions;
+      this.element = gridElement;
+      this.hreps = horizRepetitions;
+      this.vreps = vertRepetitions;
   } // Grid(AsciiBlock, int, int)
 
   // +---------+-----------------------------------------------------------

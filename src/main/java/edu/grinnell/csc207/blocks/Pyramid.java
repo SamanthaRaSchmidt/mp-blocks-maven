@@ -11,18 +11,27 @@ public class Pyramid implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /** One element of the ??. */
-  AsciiBlock element;
+  /** One element of the pyramid. */
+ String element;
+
+  /** The number of rows the pyramid will have */
+  int numRows;
 
 
   // +--------------+------------------------------------------------------
   // | Constructors |
   // +--------------+
-
-
-  public Pyramid(AsciiBlock element) {
+ 
+  /**
+   * Builds a pyramid with the specified number of rows using element.
+   * @param element
+   *  An AsciiBlock
+   * @param numRows
+   */
+  public Pyramid(String element, int numRows) {
     this.element = element;
-  } 
+    this.numRows = numRows;
+  }
 
   // +---------+-----------------------------------------------------------
   // | Methods |
@@ -36,7 +45,9 @@ public class Pyramid implements AsciiBlock {
    * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
-    return "0";
+    int spaces = (width() - this.element.length()) / 2;
+    String output = this.element.repeat(i);
+    return " ".repeat(spaces) + output + " ".repeat(spaces);
   } // row(int)
 
   /**
@@ -45,7 +56,10 @@ public class Pyramid implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;
+    if (element.equals("")) {
+      return 0;
+    }
+    return numRows;
   } // height()
 
   /**
@@ -54,7 +68,14 @@ public class Pyramid implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-   return 0;
+    int longest = this.element.length();
+    if (numRows == 1) {
+      return longest;
+    } // end for
+    for (int i = 1; i < numRows; i++) {
+      longest += 2 * this.element.length();
+    } // end for
+   return longest;
   } // width()
 
   /**
@@ -68,9 +89,9 @@ public class Pyramid implements AsciiBlock {
   } // eqv(AsciiBlock)
 
   /**
-   * Determine if another ?? is structurally equivalent to this grid.
+   * Determine if another pyramid is structurally equivalent to this grid.
    *
-   * @param other The grid to compare to this ??.
+   * @param other The grid to compare to this pyramid.
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(Pyramid other) {

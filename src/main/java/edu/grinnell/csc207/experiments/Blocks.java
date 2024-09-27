@@ -8,7 +8,6 @@ import edu.grinnell.csc207.blocks.Line;
 import edu.grinnell.csc207.blocks.Lines;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.VComp;
-import edu.grinnell.csc207.blocks.VFlip;
 import edu.grinnell.csc207.blocks.VAlignment;
 
 import java.io.PrintWriter;
