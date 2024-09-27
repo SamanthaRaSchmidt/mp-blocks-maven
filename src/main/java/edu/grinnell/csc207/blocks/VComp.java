@@ -14,14 +14,10 @@ public class VComp implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /**
-   * The blocks.
-   */
+  /** The blocks. */
   AsciiBlock[] blocks;
 
-  /**
-   * How the blocks are aligned.
-   */
+  /** How the blocks are aligned. */
   HAlignment align;
 
   // +--------------+------------------------------------------------------
@@ -31,15 +27,11 @@ public class VComp implements AsciiBlock {
   /**
    * Build a vertical composition of two blocks.
    *
-   * @param alignment
-   *   The way in which the blocks should be aligned.
-   * @param topBlock
-   *   The block on the top.
-   * @param bottomBlock
-   *   The block on the bottom.
+   * @param alignment The way in which the blocks should be aligned.
+   * @param topBlock The block on the top.
+   * @param bottomBlock The block on the bottom.
    */
-  public VComp(HAlignment alignment, AsciiBlock topBlock,
-      AsciiBlock bottomBlock) {
+  public VComp(HAlignment alignment, AsciiBlock topBlock, AsciiBlock bottomBlock) {
     this.align = alignment;
     this.blocks = new AsciiBlock[] {topBlock, bottomBlock};
   } // VComp(HAlignment, AsciiBlock, AsciiBlock)
@@ -47,10 +39,8 @@ public class VComp implements AsciiBlock {
   /**
    * Build a vertical composition of multiple blocks.
    *
-   * @param alignment
-   *   The alignment of the blocks.
-   * @param blocksToCompose
-   *   The blocks we will be composing.
+   * @param alignment The alignment of the blocks.
+   * @param blocksToCompose The blocks we will be composing.
    */
   public VComp(HAlignment alignment, AsciiBlock[] blocksToCompose) {
     this.align = alignment;
@@ -65,47 +55,34 @@ public class VComp implements AsciiBlock {
    * Get one row from the block.
    *
    * @param i the number of the row
-   *
    * @return row i.
-   *
-   * @exception Exception
-   *   if i is outside the range of valid rows.
+   * @exception Exception if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
     int maxHeight = this.height();
-    int maxWidth = this.width();
-    String output = new String(" ");
+    int maxLength = this.width();
+    int currentHight = 0;
     if (i < 0 || i >= maxHeight) {
       throw new Exception("Row at index " + i + " is out of the valid range");
     } // end of if
-      int space = maxWidth - blocks[i].width();
-      for (AsciiBlock block : blocks) {
-        int rowNum = 0;
-        for (int j = 0; j < block.height(); j++, rowNum++) {
-          if (rowNum == i) {
-            output = block.row(j);
-            if (align == HAlignment.LEFT) {
-              output = output.concat(" ".repeat(space));
-              System.out.println(rowNum + " " + block.row(j) + " " + i);
-              return output;
-            } else if (align == HAlignment.RIGHT){
-              if(blocks[i].width() < maxWidth) {
-                output = (" ".repeat(space)) + block.row(j);
-                return output;
-              } else {
-                output = block.row(j);
-                return output;
-              }
-            } else if (align == HAlignment.CENTER) {
-              output = block.row(j);
-              // I know the math for this as it's simple enough, I'll add it after I figure out the general output
-              return output;
-            }
-          }
-        }
-      }
-      return new String(output);
-} // row(int)
+    for (AsciiBlock block : blocks) {
+      if (currentHight + block.height() > i) {
+        int space = maxLength - block.width();
+        String output = block.row(i - currentHight);
+        switch (align) {
+          case LEFT:
+            return output + " ".repeat(space);
+          case RIGHT:
+            return " ".repeat(space) + output;
+          case CENTER:
+            int offsett = space / 2;
+            return " ".repeat(offsett) + output + " ".repeat(maxLength - block.width() - offsett);
+        } // end of switch
+      } // end of if
+      currentHight += block.height();
+    } // end of for
+    return " ".repeat(maxLength);
+  } // row(int)
 
   /**
    * Determine how many rows are in the block.
@@ -126,11 +103,14 @@ public class VComp implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
+    if (blocks == null || blocks.length == 0) {
+      return 0;
+    } // end of if
     int max = blocks[0].width();
     for (AsciiBlock block : blocks) {
       if (max < block.width()) {
         max = block.width();
-      }
+      } // end of if
     } // end of for
     return max;
   } // width()
@@ -138,13 +118,10 @@ public class VComp implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return false; // STUB
   } // eqv(AsciiBlock)
 } // class VComp
