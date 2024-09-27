@@ -1,7 +1,7 @@
 package edu.grinnell.csc207.blocks;
 
 /**
- * A grid of a single text block.
+ * Explanation.
  *
  * @author Kostiantyn Tsymbal
  * @author Sam Schmidt
@@ -11,7 +11,7 @@ public class OurBlock implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /** One element of the grid. */
+  /** One element of the ??. */
   AsciiBlock element;
 
 

@@ -134,13 +134,14 @@ public class HComp implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(HComp other) {
-    if (this.align.equals(other.align) && this.blocks.length == other.blocks.length) {
-      for (int i = 0; i < this.blocks.length; i++) {
-        if (!this.blocks[i].eqv(other.blocks[0])) {
-          return false;
-        } // end of if
-      } // end of loop
+    if(!this.align.equals(other.align) || this.blocks.length != other.blocks.length){
+      return false;
     } // end of if
+    for(int i =0; i < this.blocks.length; i++){
+      if(!this.blocks[i].eqv(other.blocks[i])){
+        return false;
+      } // end of if
+    } // end of for
     return true;
   } // eqv(HComp other)
 } // class HComp
