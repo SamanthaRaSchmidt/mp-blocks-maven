@@ -61,25 +61,25 @@ public class VComp implements AsciiBlock {
   public String row(int i) throws Exception {
     int maxHeight = this.height();
     int maxLength = this.width();
-    int currentHight = 0;
+    int currentHeight = 0;
     if (i < 0 || i >= maxHeight) {
       throw new Exception("Row at index " + i + " is out of the valid range");
     } // end of if
     for (AsciiBlock block : blocks) {
-      if (currentHight + block.height() > i) {
+      if (currentHeight + block.height() > i) {
         int space = maxLength - block.width();
-        String output = block.row(i - currentHight);
+        String output = block.row(i - currentHeight);
         switch (align) {
           case LEFT:
             return output + " ".repeat(space);
           case RIGHT:
             return " ".repeat(space) + output;
           case CENTER:
-            int offsett = space / 2;
-            return " ".repeat(offsett) + output + " ".repeat(maxLength - block.width() - offsett);
+            int offset = space / 2;
+            return " ".repeat(offset) + output + " ".repeat(maxLength - block.width() - offset);
         } // end of switch
       } // end of if
-      currentHight += block.height();
+      currentHeight += block.height();
     } // end of for
     return " ".repeat(maxLength);
   } // row(int)
