@@ -6,7 +6,7 @@ package edu.grinnell.csc207.blocks;
  * @author Kostiantyn Tsymbal
  * @author Sam Schmidt
  */
-public class OurBlock implements AsciiBlock {
+public class Pyramid implements AsciiBlock {
   // +--------+------------------------------------------------------------
   // | Fields |
   // +--------+
@@ -20,7 +20,7 @@ public class OurBlock implements AsciiBlock {
   // +--------------+
 
 
-  public OurBlock(AsciiBlock element) {
+  public Pyramid(AsciiBlock element) {
     this.element = element;
   } 
 
@@ -73,7 +73,7 @@ public class OurBlock implements AsciiBlock {
    * @param other The grid to compare to this ??.
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
-  public boolean eqv(OurBlock other) {
+  public boolean eqv(Pyramid other) {
     return false;
-  } // eqv(Grid)
-} // class Grid
+  } // eqv(Pyramid)
+} // class Pyramid
