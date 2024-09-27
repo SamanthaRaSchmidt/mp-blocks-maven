@@ -6,8 +6,8 @@ import java.util.Arrays;
  * The vertical composition of blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
- * @author Your Name Here
+ * @author Sam Schmidt
+ * @author Koast Tsymbal
  */
 public class VComp implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -72,8 +72,40 @@ public class VComp implements AsciiBlock {
    *   if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    return "";  // STUB
-  } // row(int)
+    int maxHeight = this.height();
+    int maxWidth = this.width();
+    String output = new String(" ");
+    if (i < 0 || i >= maxHeight) {
+      throw new Exception("Row at index " + i + " is out of the valid range");
+    } // end of if
+      int space = maxWidth - blocks[i].width();
+      for (AsciiBlock block : blocks) {
+        int rowNum = 0;
+        for (int j = 0; j < block.height(); j++, rowNum++) {
+          if (rowNum == i) {
+            output = block.row(j);
+            if (align == HAlignment.LEFT) {
+              output = output.concat(" ".repeat(space));
+              System.out.println(rowNum + " " + block.row(j) + " " + i);
+              return output;
+            } else if (align == HAlignment.RIGHT){
+              if(blocks[i].width() < maxWidth) {
+                output = (" ".repeat(space)) + block.row(j);
+                return output;
+              } else {
+                output = block.row(j);
+                return output;
+              }
+            } else if (align == HAlignment.CENTER) {
+              output = block.row(j);
+              // I know the math for this as it's simple enough, I'll add it after I figure out the general output
+              return output;
+            }
+          }
+        }
+      }
+      return new String(output);
+} // row(int)
 
   /**
    * Determine how many rows are in the block.
@@ -81,7 +113,11 @@ public class VComp implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    int heighest = 0;
+    for (AsciiBlock block : blocks) {
+      heighest += block.height();
+    } // end of for
+    return heighest;
   } // height()
 
   /**
@@ -90,7 +126,13 @@ public class VComp implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    int max = blocks[0].width();
+    for (AsciiBlock block : blocks) {
+      if (max < block.width()) {
+        max = block.width();
+      }
+    } // end of for
+    return max;
   } // width()
 
   /**

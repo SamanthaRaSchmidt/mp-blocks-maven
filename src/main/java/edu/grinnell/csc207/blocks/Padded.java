@@ -4,7 +4,8 @@ package edu.grinnell.csc207.blocks;
  * A padded ASCII block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Sam Schmidt
+ * @author Koast Tsymbal
  */
 public class Padded implements AsciiBlock {
   // +--------+------------------------------------------------------------
