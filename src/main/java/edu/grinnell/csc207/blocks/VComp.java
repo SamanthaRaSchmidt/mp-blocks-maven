@@ -86,6 +86,7 @@ public class VComp implements AsciiBlock {
             output = block.row(j);
             if (align == HAlignment.LEFT) {
               output = output.concat(" ".repeat(space));
+              System.out.println(rowNum + " " + block.row(j) + " " + i);
               return output;
             } else if (align == HAlignment.RIGHT){
               if(blocks[i].width() < maxWidth) {
