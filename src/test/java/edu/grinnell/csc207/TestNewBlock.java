@@ -15,7 +15,7 @@ public class TestNewBlock {
   // +-------+
 
   /**
-   * A placeholder.
+   * Tests if it can return a single line given 1 character
    */
   @Test
   public void basicPyramidTest() throws Exception {
@@ -25,6 +25,9 @@ public class TestNewBlock {
     assertEquals("*", pyramid.row(0), "Looks right");
   } // basicPyramidTest()
 
+  /**
+   * Tests if it can return a multiple lines given 1 character
+   */
   @Test
   public void multipleRowPyramidTest() throws Exception {
     Pyramid pyramid = new Pyramid("*", 5);
@@ -37,6 +40,9 @@ public class TestNewBlock {
     assertEquals("*********", pyramid.row(4), "Looks right");
   } // mutlipleRowPyramidTest()
 
+  /**
+   * Tests if it can return multiple lines given a longer string
+   */
   @Test
   public void longStringPyramidTest() throws Exception {
     String longString = "HELLO THIS IS A REALLY REALLY LONG STRING";
@@ -47,15 +53,41 @@ public class TestNewBlock {
     assertEquals(longString.repeat(3), pyramid.row(1), "Looks right");
   } // longStringPyramidTest()
 
+  /**
+   * Tests the emptyString with 1 row
+   */
   @Test
-  public void emptyStringTest() throws Exception {
+  public void emptyStringTestSingle() throws Exception {
     Pyramid pyramid = new Pyramid("", 1);
     assertEquals(0, pyramid.width(), "Width of a siiiingle element");
     assertEquals(0, pyramid.height(), "Height of only one element");
     assertEquals("", pyramid.row(0), "Looks right");
-  } // emptyStringTest()
+  } // emptyStringTestSingle()
 
+   /**
+   * Tests the emptyString with multiple rows
+   */
+  @Test
+  public void emptyStringTestMultiple() throws Exception {
+    Pyramid pyramid = new Pyramid("", 3);
+    assertEquals(0, pyramid.width(), "Width of a siiiingle element");
+    assertEquals(0, pyramid.height(), "Height of only one element");
+    assertEquals("", pyramid.row(0), "Looks right");
+    assertEquals("", pyramid.row(1), "Looks right");
+    assertEquals("", pyramid.row(2), "Looks right");
+  } // emptyStringTestMultiple()
 
-  
-
+   /**
+   * Tests with slash characters and spaces
+   * Helps to see how width is handled with \\
+   */
+  @Test
+  public void slashesAndSpaces() throws Exception {
+    Pyramid pyramid = new Pyramid("\\  /", 3);
+    assertEquals(20, pyramid.width(), "Width of a single element");
+    assertEquals(3, pyramid.height(), "Height of only one element");
+    assertEquals("        \\  /        ", pyramid.row(0), "Looks right");
+    assertEquals("    \\  /\\  /\\  /    ", pyramid.row(1), "Looks right");
+    assertEquals("\\  /\\  /\\  /\\  /\\  /", pyramid.row(2), "Looks right");
+  } // slashesAndSpaces()
 } // class TestNewBlock
