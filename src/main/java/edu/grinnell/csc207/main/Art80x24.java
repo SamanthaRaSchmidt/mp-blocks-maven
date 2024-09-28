@@ -1,7 +1,9 @@
 package edu.grinnell.csc207.main;
 
 import edu.grinnell.csc207.blocks.AsciiBlock;
-import edu.grinnell.csc207.blocks.Rect;
+import edu.grinnell.csc207.blocks.Pyramid;
+import edu.grinnell.csc207.blocks.Surrounded;
+import edu.grinnell.csc207.blocks.VFlip;
 
 import java.io.PrintWriter;
 
@@ -23,8 +25,13 @@ public class Art80x24 {
    */
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
-    AsciiBlock art = new Rect('^', 80, 24);
+    AsciiBlock block1 = new Pyramid(" Woah ", 6);
+    AsciiBlock art = new Surrounded ((new Surrounded(block1, '*')), '*');
+    AsciiBlock artP2 = new VFlip(art);
+
     AsciiBlock.print(pen, art);
+    AsciiBlock.print(pen, artP2);
+
     pen.close();
   } // main(String[])
 } // class Art80x24
