@@ -45,9 +45,10 @@ public class Pyramid implements AsciiBlock {
    * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
-    int spaces = (width() - this.element.length()) / 2;
-    String output = this.element.repeat(i);
+    String output = this.element.repeat(i) + this.element + this.element.repeat(i);
+    int spaces = (width() - output.length()) / 2;
     return " ".repeat(spaces) + output + " ".repeat(spaces);
+
   } // row(int)
 
   /**

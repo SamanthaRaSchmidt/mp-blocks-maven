@@ -30,20 +30,20 @@ public class TestNewBlock {
     Pyramid pyramid = new Pyramid("*", 5);
     assertEquals(9, pyramid.width(), "Width of a multi row pyramid");
     assertEquals(5, pyramid.height(), "Height of multi row pyramid");
-    assertEquals("*", pyramid.row(0), "Looks right");
-    assertEquals("***", pyramid.row(1), "Looks right");
-    assertEquals("*****", pyramid.row(2), "Looks right");
-    assertEquals("********", pyramid.row(3), "Looks right");
+    assertEquals("    *    ", pyramid.row(0), "Looks right");
+    assertEquals("   ***   ", pyramid.row(1), "Looks right");
+    assertEquals("  *****  ", pyramid.row(2), "Looks right");
+    assertEquals(" ******* ", pyramid.row(3), "Looks right");
     assertEquals("*********", pyramid.row(4), "Looks right");
   } // mutlipleRowPyramidTest()
 
   @Test
   public void longStringPyramidTest() throws Exception {
     String longString = "HELLO THIS IS A REALLY REALLY LONG STRING";
-    Pyramid pyramid = new Pyramid(longString, 1);
-    assertEquals(longString.length(), pyramid.width(), "Width of a long string");
-    assertEquals(1, pyramid.height(), "Height of a long string");
-    assertEquals(longString, pyramid.row(0), "Looks right");
+    Pyramid pyramid = new Pyramid(longString, 2);
+    assertEquals(longString.length() * 3, pyramid.width(), "Width of a long string");
+    assertEquals(2, pyramid.height(), "Height of a long string");
+    assertEquals(" ".repeat(longString.length()) + longString + " ".repeat(longString.length()), pyramid.row(0), "Looks right");
     assertEquals(longString.repeat(3), pyramid.row(1), "Looks right");
   } // longStringPyramidTest()
 
