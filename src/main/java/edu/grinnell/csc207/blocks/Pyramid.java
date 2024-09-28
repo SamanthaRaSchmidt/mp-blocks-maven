@@ -17,17 +17,15 @@ public class Pyramid implements AsciiBlock {
   /** The number of rows the pyramid will have. */
   int numRows;
 
-
   // +--------------+------------------------------------------------------
   // | Constructors |
   // +--------------+
 
   /**
    * Builds a pyramid with the specified number of rows using element.
-   * @param elements
-   *  An AsciiBlock
-   * @param rows
-   * the number of rows the pyramid should end up with
+   *
+   * @param elements An AsciiBlock
+   * @param rows the number of rows the pyramid should end up with
    */
   public Pyramid(String elements, int rows) {
     this.element = elements;
@@ -49,7 +47,6 @@ public class Pyramid implements AsciiBlock {
     String output = this.element.repeat(i) + this.element + this.element.repeat(i);
     int spaces = (width() - output.length()) / 2;
     return " ".repeat(spaces) + output + " ".repeat(spaces);
-
   } // row(int)
 
   /**
@@ -60,7 +57,7 @@ public class Pyramid implements AsciiBlock {
   public int height() {
     if (element.equals("")) {
       return 0;
-    } //endif
+    } // endif
     return numRows;
   } // height()
 

@@ -121,7 +121,6 @@ public class VComp implements AsciiBlock {
    * Determine if another block is structurally equivalent to this block.
    *
    * @param other The block to compare to this block.
-   *
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
@@ -131,9 +130,7 @@ public class VComp implements AsciiBlock {
   /**
    * Will check if the method of creating the VComp is the same as another.
    *
-   * @param other
-   *  Another AsciiBlock
-   *
+   * @param other Another AsciiBlock
    * @return a boolean; true for matching process, false otherwise
    */
   public boolean eqv(VComp other) {
@@ -146,5 +143,5 @@ public class VComp implements AsciiBlock {
       } // end of if
     } // end if for
     return true;
-  } //eqv(VComp)
+  } // eqv(VComp)
 } // class VComp
