@@ -39,7 +39,7 @@ public class HFlip implements AsciiBlock {
    */
   public static String reverseString(String str) {
     return new StringBuilder(str).reverse().toString();
-  }
+  } //reverseString(String)
 
   /**
    * Get one row from the block.
@@ -51,7 +51,7 @@ public class HFlip implements AsciiBlock {
   public String row(int i) throws Exception {
     if (i < 0 || i >= block.height()) {
       throw new Exception("Row at index " + i + " is out of the valid range");
-    }
+    } //endif
     int maxLength = this.width();
     int wordLength = block.row(i).length();
     if (maxLength > wordLength) {

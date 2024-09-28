@@ -49,7 +49,7 @@ public class VFlip implements AsciiBlock {
     if (i < 0 || i >= height()) {
       throw new Exception("Row at index " + i + " is out of the valid range");
     } // end of if
-      return block.row(height() - 1 - i);
+    return block.row(height() - 1 - i);
   } // row(int)
 
   /**

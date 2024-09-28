@@ -77,6 +77,8 @@ public class VComp implements AsciiBlock {
           case CENTER:
             int offset = space / 2;
             return " ".repeat(offset) + output + " ".repeat(maxLength - block.width() - offset);
+          default:
+            throw new Exception("Invalid alignment");
         } // end of switch
       } // end of if
       currentHeight += block.height();
@@ -119,6 +121,7 @@ public class VComp implements AsciiBlock {
    * Determine if another block is structurally equivalent to this block.
    *
    * @param other The block to compare to this block.
+   *
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
@@ -126,16 +129,19 @@ public class VComp implements AsciiBlock {
   } // eqv(AsciiBlock)
 
   /**
-   * 
+   * Will check if the method of creating the VComp is the same as another.
+   *
    * @param other
-   * @return
+   *  Another AsciiBlock
+   *
+   * @return a boolean; true for matching process, false otherwise
    */
-  public boolean eqv(VComp other){
-    if(!this.align.equals(other.align) || this.blocks.length != other.blocks.length){
+  public boolean eqv(VComp other) {
+    if (!this.align.equals(other.align) || this.blocks.length != other.blocks.length) {
       return false;
     } // end of for
-    for(int i = 0; i < this.blocks.length; i++){
-      if(!this.blocks[i].eqv(other.blocks[i])){
+    for (int i = 0; i < this.blocks.length; i++) {
+      if (!this.blocks[i].eqv(other.blocks[i])) {
         return false;
       } // end of if
     } // end if for

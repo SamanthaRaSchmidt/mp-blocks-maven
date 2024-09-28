@@ -1,7 +1,7 @@
 package edu.grinnell.csc207.blocks;
 
 /**
- * Explanation.
+ * Builds a pyramid of a given String.
  *
  * @author Kostiantyn Tsymbal
  * @author Sam Schmidt
@@ -12,26 +12,27 @@ public class Pyramid implements AsciiBlock {
   // +--------+
 
   /** One element of the pyramid. */
- String element;
+  String element;
 
-  /** The number of rows the pyramid will have */
+  /** The number of rows the pyramid will have. */
   int numRows;
 
 
   // +--------------+------------------------------------------------------
   // | Constructors |
   // +--------------+
- 
+
   /**
    * Builds a pyramid with the specified number of rows using element.
-   * @param element
+   * @param elements
    *  An AsciiBlock
-   * @param numRows
+   * @param rows
+   * the number of rows the pyramid should end up with
    */
-  public Pyramid(String element, int numRows) {
-    this.element = element;
-    this.numRows = numRows;
-  }
+  public Pyramid(String elements, int rows) {
+    this.element = elements;
+    this.numRows = rows;
+  } // Pyramid(String, int)
 
   // +---------+-----------------------------------------------------------
   // | Methods |
@@ -59,7 +60,7 @@ public class Pyramid implements AsciiBlock {
   public int height() {
     if (element.equals("")) {
       return 0;
-    }
+    } //endif
     return numRows;
   } // height()
 
@@ -76,7 +77,7 @@ public class Pyramid implements AsciiBlock {
     for (int i = 1; i < numRows; i++) {
       longest += 2 * this.element.length();
     } // end for
-   return longest;
+    return longest;
   } // width()
 
   /**

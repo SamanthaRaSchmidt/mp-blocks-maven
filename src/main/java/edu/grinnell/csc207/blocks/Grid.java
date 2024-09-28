@@ -41,11 +41,10 @@ public class Grid implements AsciiBlock {
    * @param vertRepetitions
    *   THe number of vertical repetitions in the grid.
    */
-  public Grid(AsciiBlock gridElement, int horizRepetitions,
-      int vertRepetitions) {
-      this.element = gridElement;
-      this.hreps = horizRepetitions;
-      this.vreps = vertRepetitions;
+  public Grid(AsciiBlock gridElement, int horizRepetitions, int vertRepetitions) {
+    this.element = gridElement;
+    this.hreps = horizRepetitions;
+    this.vreps = vertRepetitions;
   } // Grid(AsciiBlock, int, int)
 
   // +---------+-----------------------------------------------------------
@@ -65,7 +64,7 @@ public class Grid implements AsciiBlock {
   public String row(int i) throws Exception {
     if (i < 0 || i >= this.height()) {
       throw new Exception("Row at index " + i + " is out of the valid range");
-    }
+    } //endif
     int rowElement = i % element.height();
     String rowOutput = element.row(rowElement);
     return rowOutput.repeat(this.hreps);

@@ -100,8 +100,10 @@ public class Lines implements AsciiBlock {
   } // eqv(AsciiBlock)
 
   /**
-   * Determine if another array of strings equivalent to this array
+   * Determine if another array of strings equivalent to this array.
+   *
    * @param other array of strings
+   *
    * @return true if the another array equals to this array
    */
   public boolean eqv(Lines other) {
@@ -114,6 +116,6 @@ public class Lines implements AsciiBlock {
       return true;
     } else {
       return false;
-    }
+    } //endif
   } // eqv(Lines)
 } // class Lines

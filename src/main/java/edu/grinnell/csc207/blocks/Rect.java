@@ -86,7 +86,7 @@ public class Rect implements AsciiBlock {
   } // eqv(AsciiBlock)
 
   /**
-   * Determine if another rectangle is structurally equivalen to this rectangle
+   * Determine if another rectangle is structurally equivalen to this rectangle.
    *
    * @param other other rectangle
    * @return true if two rectangles are structurally equivalent
