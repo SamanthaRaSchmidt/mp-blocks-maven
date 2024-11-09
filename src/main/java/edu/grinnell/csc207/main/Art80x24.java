@@ -26,7 +26,7 @@ public class Art80x24 {
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
     AsciiBlock block1 = new Pyramid(" Woah ", 6);
-    AsciiBlock art = new Surrounded ((new Surrounded(block1, '*')), '*');
+    AsciiBlock art = new Surrounded((new Surrounded(block1, '*')), '*');
     AsciiBlock artP2 = new VFlip(art);
 
     AsciiBlock.print(pen, art);

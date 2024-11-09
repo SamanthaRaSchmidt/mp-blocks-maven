@@ -84,7 +84,7 @@ public class Pyramid implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;
+    return (other instanceof Pyramid) && (this.eqv((Pyramid) other));
   } // eqv(AsciiBlock)
 
   /**
@@ -94,6 +94,8 @@ public class Pyramid implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(Pyramid other) {
-    return false;
+    return this.height() == other.height()
+        && this.width() == other.width()
+        && this.element.equals(other.element);
   } // eqv(Pyramid)
 } // class Pyramid

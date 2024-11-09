@@ -125,7 +125,7 @@ public class HComp implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return ((other instanceof HComp) && (this.eqv((HComp) other))); // STUB
+    return ((other instanceof HComp) && (this.eqv((HComp) other)));
   } // eqv(AsciiBlock)
 
   /**
